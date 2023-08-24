@@ -13,37 +13,58 @@ sudo -i
 sudo apt update
 
 Change time zonedate
+
 timedatectl
+
 sudo timedatectl set-timezone Asia/Kolkata
+
 timedatectl
+
 date
 
 Change time hostnamehostnamectl set-hostname sonarqube
+
 bash
 
 Install Javajava -version
+
 apt-get install openjdk-17-jdk -y       ## For sonarqube-10.0.0.68432.zip
+
 apt-get install openjdk-11-jdk -y       ## For sonarqube-8.9.2.46101.zip
+
 java -version         
 
 Install Sonarqubecd /opt/
+
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.0.0.68432.zip
 OR
+
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.2.46101.zip
+
 apt install unzip -y
+
 unzip sonarqube-10.0.0.68432.zip
+
 ls
+
 rm -rf sonarqube-10.0.0.68432.zip
+
 mv sonarqube-10.0.0.68432 sonarqube
+
 ls
 
 Create sonar useruseradd -d /opt/sonarqube sonar
+
 cat /etc/passwd | grep sonar
+
 ls -ld /opt/sonarqube
+
 chown -R sonar:sonar /opt/sonarqube
+
 ls -ld /opt/sonarqube
 
 Create custom service for sonarcat >> /etc/systemd/system/sonarqube.service <<EOL
+
 [Unit]
 Description=SonarQube service
 After=syslog.target network.target
@@ -62,6 +83,7 @@ TimeoutStartSec=5
 Restart=always
 
 [Install]
+
 WantedBy=multi-user.target
 EOL
 
@@ -73,14 +95,17 @@ Open port 9000 from firewalld OR security group9000
 Service startsystemctl start sonarqube.service
 
 Service enable & check statussystemctl enable sonarqube.service
+
 systemctl status sonarqube.service
 
 Check 9000 port is used or notapt install net-tools
+
 netstat -plant | grep 9000
 
 Open sonarqube on browserURL:   http://<sonarqube_ip>:9000
 
 U: admin
+
 P: admin
 
 New Pass: admin@123

@@ -12,21 +12,21 @@ Update repository of ubuntu## Download URL:  https://www.sonarsource.com/product
 sudo -i
 sudo apt update
 
-Change time zonedate
+#### Change time zonedate
 
 timedatectl
 
-sudo timedatectl set-timezone Asia/Kolkata
+sudo timedatectl set-timezone Asia/Kolkata 
 
 timedatectl
 
 date
 
-Change time hostnamehostnamectl set-hostname sonarqube
+Change time hostname ####   hostnamectl set-hostname sonarqube
 
 bash
 
-Install Javajava -version
+########   Install Javajava -version
 
 apt-get install openjdk-17-jdk -y       ## For sonarqube-10.0.0.68432.zip
 
@@ -34,7 +34,7 @@ apt-get install openjdk-11-jdk -y       ## For sonarqube-8.9.2.46101.zip
 
 java -version         
 
-Install Sonarqubecd /opt/
+#####   Install Sonarqube ###  cd /opt/
 
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.0.0.68432.zip
 OR
@@ -53,7 +53,9 @@ mv sonarqube-10.0.0.68432 sonarqube
 
 ls
 
-Create sonar useruseradd -d /opt/sonarqube sonar
+#### Create sonar user #############
+
+useradd -d /opt/sonarqube sonar
 
 cat /etc/passwd | grep sonar
 
@@ -63,7 +65,7 @@ chown -R sonar:sonar /opt/sonarqube
 
 ls -ld /opt/sonarqube
 
-Create custom service for sonarcat >> /etc/systemd/system/sonarqube.service <<EOL
+Create custom service for sonar cat >> /etc/systemd/system/sonarqube.service <<EOL
 
 [Unit]
 Description=SonarQube service
@@ -92,9 +94,13 @@ ls -l /etc/systemd/system/sonarqube.service
 
 Open port 9000 from firewalld OR security group9000
 
-Service startsystemctl start sonarqube.service
+ ####### Service start ##########
 
-Service enable & check statussystemctl enable sonarqube.service
+systemctl start sonarqube.service
+
+############ Service enable & check status  #################
+
+systemctl enable sonarqube.service
 
 systemctl status sonarqube.service
 

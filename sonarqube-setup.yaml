@@ -65,8 +65,8 @@ chown -R sonar:sonar /opt/sonarqube
 
 ls -ld /opt/sonarqube
 
-Create custom service for sonar cat >> /etc/systemd/system/sonarqube.service <<EOL
-
+Create custom service for sonar cat  /etc/systemd/system/sonarqube.service
+EOL
 [Unit]
 Description=SonarQube service
 After=syslog.target network.target

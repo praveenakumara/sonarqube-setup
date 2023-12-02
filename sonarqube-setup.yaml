@@ -66,7 +66,6 @@ chown -R sonar:sonar /opt/sonarqube
 ls -ld /opt/sonarqube
 
 Create custom service for sonar cat  /etc/systemd/system/sonarqube.service
-EOL
 [Unit]
 Description=SonarQube service
 After=syslog.target network.target
@@ -87,7 +86,7 @@ Restart=always
 [Install]
 
 WantedBy=multi-user.target
-EOL
+
 
 
 ls -l /etc/systemd/system/sonarqube.service
